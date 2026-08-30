@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Agendamiento de citas médicas</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="validacion.js"></script>
+</head>
+
+<body>
+  <div id="notificaciones" class="notificaciones-contenedor"></div>
+
+  <header class="header-academico">
+    <h1>Sistema de Agendamiento de Citas Médicas</h1>
+    <p>Universidad del Cauca</p>
+    <p>Laboratorio 3 - JavaScript - Manejo del DOM - Arquitectura en Capas</p>
+  </header>
+
+  <h2>Registrar Médico</h2>
+  <form id="formMedico">
+    <label for="nombresMedico">Nombres: </label>
+    <input type="text" id="nombresMedico" name="nombresMedico" placeholder="Nombres">
+    <label class="error" id="errorNombres"></label><br>
+
+    <label for="apellidosMedico">Apellidos: </label>
+    <input type="text" id="apellidosMedico" name="apellidosMedico" placeholder="Apellidos">
+    <label class="error" id="errorApellidos"></label><br>
+
+    <label for="especialidadMedico">Especialidad: </label>
+    <input type="text" id="especialidadMedico" name="especialidadMedico" placeholder="Especialidad">
+    <label class="error" id="errorEspecialidad"></label><br>
+
+    <label for="horarioMedico">Horario de atención: </label>
+    <input type="text" id="horarioMedico" name="horarioMedico" placeholder="Horario de atención">
+    <label class="error" id="errorHorarioMedico"></label><br>
+
+    <label for="experienciaMedico">Años de experiencia: </label>
+    <input type="number" id="experienciaMedico" name="experienciaMedico" placeholder="Años de experiencia">
+    <label class="error" id="errorexperienciaMedico"></label><br>
+
+    <textarea id="bibliografiaMedico" placeholder="Bibliografía"></textarea>
+    <button type="submit" id="btnAgregarMedico">Agregar Médico</button>
+  </form>
+
+  <h2>Registrar Paciente</h2>
+  <form id="formPaciente">
+    <input type="text" id="nombresPaciente" placeholder="Nombres" required>
+    <input type="text" id="apellidosPaciente" placeholder="Apellidos" required>
+    <button type="submit" id="btnAgregarPaciente">Agregar Paciente</button>
+  </form>
+
+  <h2>Registrar citas médicas</h2>
+  <form id="formCitas">
+    <label for="fecha">Fecha</label>
+    <input type="date" id="fecha" required>
+
+    <label for="horaInicio">Hora Inicio</label>
+    <input type="time" id="horaInicio" required>
+
+    <label for="horaFin">Hora Fin</label>
+    <input type="time" id="horaFin" required>
+
+    <label for="medicoSelect">Médico</label>
+    <select id="medicoSelect" required></select>
+
+    <label for="pacienteSelect">Paciente</label>
+    <select id="pacienteSelect" required></select>
+
+    <button type="submit" id="btnAgregarCita" >Agregar Cita</button>
+  </form>
+
+  <h2>Citas Registradas</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Hora Inicio</th>
+        <th>Hora Fin</th>
+        <th>Médico</th>
+        <th>Paciente</th>
+      </tr>
+    </thead>
+    <tbody id="tablaCitas"></tbody>
+  </table>
+
+  <footer class="footer-academico">
+    <p>Ingeniería del Software III - Ejemplo de arquitectura en capas</p>
+    <p>&copy; 2026 Universidad del Cauca. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Archivos JS -->
+  <!-- 1. Entidades -->
+  <script src="../capaDeAccesoADatos/entitys/Medico.js"></script>
+  <script src="../capaDeAccesoADatos/entitys/Paciente.js"></script>
+  <script src="../capaDeAccesoADatos/entitys/Cita.js"></script>
+
+  <!-- 2. Repositorios -->
+  <script src="../capaDeAccesoADatos/repositorios/MedicoRepository.js"></script>
+  <script src="../capaDeAccesoADatos/repositorios/PacienteRepository.js"></script>
+  <script src="../capaDeAccesoADatos/repositorios/CitaRepository.js"></script>
+
+  <!-- 3. Fachadas -->
+  <script src="../fachadaServices/gestionarMedicosServices.js"></script>
+  <script src="../fachadaServices/gestionarPacientesServices.js"></script>
+  <script src="../fachadaServices/gestionarCitasServices.js"></script>
+
+  <!-- 4. Vista -->
+  <script src="notificaciones.js"></script>
+  <script src="logicaMedico.js"></script>
+  <script src="logicaPaciente.js"></script>
+  <script src="logicaCita.js"></script>
+</body>
+
+</html>
