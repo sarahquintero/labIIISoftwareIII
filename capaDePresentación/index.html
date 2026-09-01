@@ -6,6 +6,8 @@
   <title>Agendamiento de citas médicas</title>
   <link rel="stylesheet" href="css/estilos.css">
   <script src="validacion.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </head>
 
 <body>
@@ -36,38 +38,50 @@
     <label class="error" id="errorHorarioMedico"></label><br>
 
     <label for="experienciaMedico">Años de experiencia: </label>
-    <input type="number" id="experienciaMedico" name="experienciaMedico" placeholder="Años de experiencia">
-    <label class="error" id="errorexperienciaMedico"></label><br>
+    <input type="number" id="experienciaMedico" name="experienciaMedico" placeholder="Años de experiencia" required>
+    <label class="error" id="errorExperienciaMedico"></label><br>
 
     <textarea id="bibliografiaMedico" placeholder="Bibliografía"></textarea>
     <button type="submit" id="btnAgregarMedico">Agregar Médico</button>
   </form>
 
   <h2>Registrar Paciente</h2>
-  <form id="formPaciente">
+  <form id="formPaciente" onsubmit="return validarFormularioPaciente()">
+    <label for="nombresPaciente">Nombres:</label>
     <input type="text" id="nombresPaciente" placeholder="Nombres" required>
+    <label class="error" id="errorNombresPaciente"></label><br>
+
+    <label for="apellidosPaciente">Apellidos:</label>
     <input type="text" id="apellidosPaciente" placeholder="Apellidos" required>
+    <label class="error" id="errorApellidosPaciente"></label><br>
+
     <button type="submit" id="btnAgregarPaciente">Agregar Paciente</button>
   </form>
+
 
   <h2>Registrar citas médicas</h2>
   <form id="formCitas">
     <label for="fecha">Fecha</label>
     <input type="date" id="fecha" required>
+    <label class="error" id="errorFecha"></label><br>
 
     <label for="horaInicio">Hora Inicio</label>
     <input type="time" id="horaInicio" required>
+    <label class="error" id="errorHoraInicio"></label><br>
 
     <label for="horaFin">Hora Fin</label>
     <input type="time" id="horaFin" required>
+    <label class="error" id="errorHoraFin"></label><br>
 
     <label for="medicoSelect">Médico</label>
     <select id="medicoSelect" required></select>
+    <label class="error" id="errorMedicoSelect"></label><br>
 
     <label for="pacienteSelect">Paciente</label>
     <select id="pacienteSelect" required></select>
+    <label class="error" id="errorPacienteSelect"></label><br>
 
-    <button type="submit" id="btnAgregarCita" >Agregar Cita</button>
+    <button type="submit" id="btnAgregarCita">Agregar Cita</button>
   </form>
 
   <h2>Citas Registradas</h2>

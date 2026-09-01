@@ -1,31 +1,40 @@
 class GestionarCitas {
-  constructor(xxx, pacienteRepo, citaRepo) {
+  constructor(medicoRepo, pacienteRepo, citaRepo) {
     this.medicoRepo = medicoRepo;
     this.pacienteRepo = pacienteRepo;
     this.citaRepo = citaRepo;
   }
-  registrarCita(fecha, horaInicio, horaFin, xxx, idPaciente) {
+
+  registrarCita(fecha, horaInicio, horaFin, idMedico, idPaciente) {
     const id = this.citaRepo.siguienteId();
-    const medico = this.xxx.buscarPorId(xxx);
+
+    const medico = this.medicoRepo.buscarPorId(idMedico);
     if (!medico) {
-      throw new Error("xxx no encontrado");
+      throw new Error("Médico no encontrado");
     }
+
     const paciente = this.pacienteRepo.buscarPorId(idPaciente);
     if (!paciente) {
       throw new Error("Paciente no encontrado");
     }
-    
-    const xxx = new Cita(id, fecha, horaInicio, horaFin, xxx, paciente);
-    this.xxx.agregar(xxx);
-    return xxx;
+
+    // Validación de horas
+    if (horaFin <= horaInicio) {
+      throw new Error("La hora de fin debe ser mayor que la hora de inicio");
+    }
+
+    const cita = new Cita(id, fecha, horaInicio, horaFin, medico, paciente);
+    this.citaRepo.agregar(cita);
+    return cita;
   }
 
   listarCitas() {
-    return this.citaRepo.obtenerTodos();
+    return this.citaRepo.obtenerTodas();
   }
 
   buscarCita(id) {
     return this.citaRepo.buscarPorId(id);
   }
 }
-xxx xxx = new GestionarCitas(xxx, pacienteRepo, citaRepo);
+
+const gestionarCitas = new GestionarCitas(medicoRepo, pacienteRepo, citaRepo);

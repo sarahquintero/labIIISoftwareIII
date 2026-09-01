@@ -4,8 +4,7 @@ class Cita {
     this.fecha = fecha;
     this.horaInicio = horaInicio;
     this.horaFin = horaFin;
-    this.xxxxx = xxxxx;
+    this.medico = medico;
     this.paciente = paciente;
   }
 }
-
